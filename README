@@ -1,0 +1,19 @@
+# Compile:
+## RocksDB
+cd ./rocksdb-6.8.1
+`ROCKSDB_DISABLE_ZLIB=TRUE ROCKSDB_DISABLE_BZIP=TRUE ROCKSDB_DISABLE_LZ4=TRUE ROCKSDB_DISABLE_ZSTD=TRUE \
+  EXTRA_CXXFLAGS="-fno-omit-frame-pointer -Wno-range-loop-construct -Wno-maybe-uninitialized -g " \
+    EXTRA_CFLAGS="-fno-omit-frame-pointer -g " \
+    PORTABLE=1 make -j$(nproc) USE_RTTI=1 shared_lib`
+## Compile bench tool
+Run `make`
+
+# Manifest-generation:
+First edit the generic template paths, any path that contains "/home/snehal/eran"  should be changed to your path.
+Run `make gen-man`
+
+# Run the tool:
+## native using makefile with 15gb target db
+Run `make run-native`
+## using gramine-direct
+Run `make run-direct`
